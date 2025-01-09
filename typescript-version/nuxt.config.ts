@@ -120,6 +120,10 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
 
-  modules: ['@vueuse/nuxt', '@nuxtjs/device', '@pinia/nuxt'],
+  modules: ['@vueuse/nuxt', '@nuxtjs/device', '@pinia/nuxt', '@nuxtjs/supabase'],
+  supabase: {
+    key: process.env.SUPABASE_KEY,
+    url: process.env.SUPABASE_URL
+  },
   compatibilityDate: '2025-01-01',
 })

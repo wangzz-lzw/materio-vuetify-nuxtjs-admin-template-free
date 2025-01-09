@@ -14,7 +14,9 @@
   "dependencies": {
     "@floating-ui/dom": "1.6.8",
     "@iconify-json/bxl": "^1.1.10",
+    "@nuxtjs/supabase": "^1.4.5",
     "@stylistic/stylelint-config": "^1.0.1",
+    "@supabase/supabase-js": "^2.47.12",
     "@vueuse/core": "^10.11.1",
     "@vueuse/math": "^10.11.1",
     "apexcharts": "^3.54.1",
