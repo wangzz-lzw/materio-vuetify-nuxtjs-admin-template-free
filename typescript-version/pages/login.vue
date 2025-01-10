@@ -44,10 +44,10 @@ definePageMeta({ layout: 'blank' })
 
       <VCardText class="pt-2">
         <h4 class="text-h4 mb-1">
-          Welcome to Materio! 👋🏻
+          欢迎登录 👋🏻
         </h4>
         <p class="mb-0">
-          Please sign-in to your account and start the adventure
+          请输入你的账号和密码开启新的旅程
         </p>
       </VCardText>
 
@@ -56,42 +56,42 @@ definePageMeta({ layout: 'blank' })
           <VRow>
             <!-- email -->
             <VCol cols="12">
-              <VTextField :id="useId()" v-model="form.email" label="Email" type="email" />
+              <VTextField :id="useId()" v-model="form.email" label="邮箱" type="email" />
             </VCol>
 
             <!-- password -->
             <VCol cols="12">
-              <VTextField :id="useId()" v-model="form.password" label="Password" placeholder="············"
+              <VTextField :id="useId()" v-model="form.password" label="密码" placeholder="············"
                 :type="isPasswordVisible ? 'text' : 'password'" autocomplete="password"
                 :append-inner-icon="isPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
                 @click:append-inner="isPasswordVisible = !isPasswordVisible" />
 
               <!-- remember me checkbox -->
               <div class="d-flex align-center justify-space-between flex-wrap my-6">
-                <VCheckbox :id="useId()" v-model="form.remember" label="Remember me" />
+                <VCheckbox :id="useId()" v-model="form.remember" label="记住密码" />
 
                 <a class="text-primary" href="javascript:void(0)">
-                  Forgot Password?
+                  忘记密码?
                 </a>
               </div>
 
               <!-- login button -->
               <VBtn block type="submit" to="/">
-                Login
+                登录
               </VBtn>
             </VCol>
 
             <!-- create account -->
             <VCol cols="12" class="text-center text-base">
-              <span>New on our platform?</span>
+              <span>新用户?</span>
               <NuxtLink class="text-primary ms-2" to="/register">
-                Create an account
+                注册账号
               </NuxtLink>
             </VCol>
 
             <VCol cols="12" class="d-flex align-center">
               <VDivider />
-              <span class="mx-4">or</span>
+              <span class="mx-2 whitespace-no-wrap">或者</span>
               <VDivider />
             </VCol>
 

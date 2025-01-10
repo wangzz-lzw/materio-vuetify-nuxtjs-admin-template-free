@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import UpgradeToPro from '@/components/UpgradeToPro.vue'
 
 const { isMobile } = useDevice()
 if (isMobile)
@@ -11,6 +10,5 @@ if (isMobile)
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <UpgradeToPro />
   </VApp>
 </template>
