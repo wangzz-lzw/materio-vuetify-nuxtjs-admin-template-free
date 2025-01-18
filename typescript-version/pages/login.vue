@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTheme } from 'vuetify'
+import { useTheme, type SubmitEventPromise } from 'vuetify'
 import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
 
 import logo from '@images/logo.svg?raw'
@@ -8,7 +8,37 @@ import authV1MaskLight from '@images/pages/auth-v1-mask-light.png'
 import authV1Tree2 from '@images/pages/auth-v1-tree-2.png'
 import authV1Tree from '@images/pages/auth-v1-tree.png'
 
-const form = ref({
+interface IForm {
+  email: string,
+  password: string,
+  remember: boolean
+}
+
+const handler = (str: string) => {
+  let arr = str.split('_');
+
+  let newArr = arr.map((ele, idx) => {
+
+    return idx === 0 ? ele : ele[0].toUpperCase() + ele.slice(1)
+  })
+  return newArr.join('')
+}
+const accountDataLocal = ref<Record<string, any>>({})
+
+
+const getUserinfo = async () => {
+  return new Promise(async (resolve) => {
+    const supabase = useSupabaseClient()
+    const { data } = await supabase.from('user').select()
+    console.log('data', data)
+    Object.keys(data![0]).forEach((key: string) => {
+      accountDataLocal.value[handler(key)] = data![0][key]
+    })
+    resolve(data)
+  })
+
+}
+const form = ref<IForm>({
   email: '',
   password: '',
   remember: false,
@@ -22,6 +52,11 @@ const authThemeMask = computed(() => {
     : authV1MaskDark
 })
 
+
+const handleSubmit = async () => {
+  const data = await getUserinfo()
+  
+}
 const isPasswordVisible = ref(false)
 
 definePageMeta({ layout: 'blank' })
@@ -52,7 +87,7 @@ definePageMeta({ layout: 'blank' })
       </VCardText>
 
       <VCardText>
-        <VForm @submit.prevent="() => { }">
+        <VForm @submit.prevent="handleSubmit">
           <VRow>
             <!-- email -->
             <VCol cols="12">
@@ -76,7 +111,7 @@ definePageMeta({ layout: 'blank' })
               </div>
 
               <!-- login button -->
-              <VBtn block type="submit" to="/">
+              <VBtn block type="submit" @click="handleSubmit">
                 登录
               </VBtn>
             </VCol>
